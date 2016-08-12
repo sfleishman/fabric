@@ -37,7 +37,7 @@ task printClasspath {
     }
 }
 
-archivesBaseName = "java-mapexample"
+archivesBaseName = "chaincode"
 mainClassName="example.MapExample"
 
 run {
@@ -59,10 +59,19 @@ repositories {
     mavenCentral()
 }
 
+
 distZip {
   archiveName='Chaincode.zip'
   duplicatesStrategy='exclude'
 }
+
+jar {
+    destinationDir=file("${buildDir}")
+    manifest {
+        attributes 'Main-Class': 'example.MapExample'
+    }
+}
+
 
 startScripts{
  applicationName='runChaincode'

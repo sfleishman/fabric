@@ -37,7 +37,7 @@ task printClasspath {
     }
 }
 
-archivesBaseName = "java-example"
+archivesBaseName = "chaincode"
 mainClassName="example.Example"
 
 run {
@@ -63,6 +63,13 @@ repositories {
 distZip {
   archiveName='Chaincode.zip'
   duplicatesStrategy='exclude'
+}
+
+jar {
+    destinationDir=file("${buildDir}")
+    manifest {
+        attributes 'Main-Class': 'example.Example'
+    }
 }
 
 

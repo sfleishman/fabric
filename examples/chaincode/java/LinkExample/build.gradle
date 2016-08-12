@@ -37,7 +37,7 @@ task printClasspath {
     }
 }
 
-archivesBaseName = "java-linkexample"
+archivesBaseName = "chaincode"
 mainClassName="example.LinkExample"
 
 run {
@@ -64,6 +64,14 @@ distZip {
   archiveName='Chaincode.zip'
   duplicatesStrategy='exclude'
 }
+
+jar {
+    destinationDir=file("${buildDir}")
+    manifest {
+        attributes 'Main-Class': 'example.LinkExample'
+    }
+}
+
 
 startScripts{
  applicationName='runChaincode'

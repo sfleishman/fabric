@@ -30,8 +30,8 @@ plugins {
 	id "com.google.protobuf" version "0.7.6"
 	id "eclipse"
 }
-archivesBaseName = 'chaincode'
-version = '1.0'
+archivesBaseName = 'shim-client'
+//version = '1.0'
 
 
 sourceSets {

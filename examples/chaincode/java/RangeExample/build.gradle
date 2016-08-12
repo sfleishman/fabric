@@ -31,13 +31,13 @@ plugins {
 }
 
 
-// task printClasspath {
-//     doLast {
-//         configurations.testRuntime.each { println it }
-//     }
-// }
+task printClasspath {
+    doLast {
+        configurations.testRuntime.each { println it }
+    }
+}
 
-archivesBaseName = "RangeExample"
+archivesBaseName = "chaincode"
 mainClassName="example.RangeExample"
 
 run {
@@ -61,23 +61,21 @@ repositories {
 
 
 distZip {
-//  destinationDir = file("${projectDir}")
   archiveName='Chaincode.zip'
   duplicatesStrategy='exclude'
 }
 
+jar {
+    destinationDir=file("${buildDir}")
+    manifest {
+        attributes 'Main-Class': 'example.RangeExample'
+    }
+}
+
+
 startScripts{
  applicationName='runChaincode'
 }
-
-// jar.doFirst {
-//  destinationDir = file("${projectDir}")
-//    manifest {
-//     attributes ('Main-Class': mainClassName,
-//                 'Class-Path': configurations.runtime.each { "/root/lib"+"/$it.name" }.join(' ')
-//                 )
-// }
-// }
 
 
 dependencies {

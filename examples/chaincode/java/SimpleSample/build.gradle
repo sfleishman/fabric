@@ -31,7 +31,13 @@ plugins {
 }
 
 
-archivesBaseName = "java-simplesample"
+task printClasspath {
+    doLast {
+        configurations.testRuntime.each { println it }
+    }
+}
+
+archivesBaseName = "chaincode"
 mainClassName="example.SimpleSample"
 
 run {
@@ -58,6 +64,14 @@ distZip {
   archiveName='Chaincode.zip'
   duplicatesStrategy='exclude'
 }
+
+jar {
+    destinationDir=file("${buildDir}")
+    manifest {
+        attributes 'Main-Class': 'example.SimpleSample'
+    }
+}
+
 
 startScripts{
  applicationName='runChaincode'
