@@ -19,10 +19,6 @@ POM_FILE=pom.xml
 GRADLE_EXE=`which gradle`
 GRADLE_BUILD_FILE=build.gradle
 
-#expected output
-CHAINCODE_JAR=./build/chaincode.jar
-RUN_SHELL=runChaincode.sh
-
 # for maven build need to cd <user path>/fabric 
 FABRIC_KEYWORD="/fabric"
 PWD=`pwd`
@@ -53,7 +49,6 @@ else
        fi
 fi
 
-
 if [ $THIS_BUILD = "MAVEN" ]; then
   echo "Building chaincode with maven... "
   cd $FABRIC_ROOT_DIR
@@ -71,12 +66,9 @@ if [ $THIS_BUILD = "GRADLE" ]; then
 fi
 
 if [ $success = "2" ];then
-  echo "build completed successfully"
-  #copy for execution in container
-  cp $CHAINCODE_JAR /root
-  cp $RUN_SHELL /root
-  echo "codechain.jar and runChaincode.sh are available in /root"
+  cp runChaincode.sh ./build
+  echo "Please run ./runChaincode.sh from ./build directory"  
 else
- echo "build failed. Please check chaincode_build.sh"
+  echo "Build failed. please check chaincode_build.log"
 fi
 

@@ -65,12 +65,21 @@ distZip {
   duplicatesStrategy='exclude'
 }
 
-jar {
+jar.doFirst {
     destinationDir=file("${buildDir}")
     manifest {
-        attributes 'Main-Class': 'example.SimpleSample'
+        attributes (
+        'Main-Class': 'example.SimpleSample',
+        'Class-Path': configurations.compile.collect { "libs/"+"$it.name" }.join(' ')
+        )
     }
 }
+
+task copyToLib(type: Copy) {
+    into "$buildDir/libs"
+    from configurations.runtime
+}
+build.finalizedBy(copyToLib)
 
 
 startScripts{

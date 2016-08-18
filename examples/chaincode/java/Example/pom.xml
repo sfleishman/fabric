@@ -41,11 +41,13 @@ limitations under the License.
         <plugin>
 		<groupId>org.apache.maven.plugins</groupId>
 		<artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
 		<configuration>
 			<outputDirectory>${dist.dir}</outputDirectory>
 			<archive>
 			<manifest>
-			<addClasspath>false</addClasspath>
+			<addClasspath>true</addClasspath>
+                        <classpathPrefix>libs/</classpathPrefix>
 			<mainClass>example.Example</mainClass>
 			</manifest>
 			</archive>
