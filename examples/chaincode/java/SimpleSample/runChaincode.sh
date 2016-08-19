@@ -9,5 +9,4 @@ if [ ! -f $CHAINCODE_JAR ];then
  exit 1
 fi
 
-$JAVA -jar $CHAINCODE_JAR  
-
+$JAVA -jar $CHAINCODE_JAR "$@" 
